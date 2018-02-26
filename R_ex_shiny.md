@@ -40,12 +40,29 @@ Data loading
 
 I used locally stored weather data to build a plot, I loaded almost 30000 flat files. Each json file has around 76 variables, I chose only necessary ones for a plot.
 
-```{r}
+
+```r
 library (jsonlite)
 files <- list.files(path="/Users/wookiter/weather", pattern="*.txt", full.names=T, recursive=FALSE) 
 tail(files,3)
+```
+
+```
+[1] "/Users/wookiter/weather/2018-02-24-17-00-07-IJAWCZYC2.txt" 
+[2] "/Users/wookiter/weather/2018-02-24-17-00-08-IMAZOWIE61.txt"
+[3] "/Users/wookiter/weather/2018-02-24-17-00-09-IMZPECIC2.txt" 
+```
+
+```r
 json_record <- read_json ("/Users/wookiter/weather/2018-02-24-17-00-09-IMZPECIC2.txt")
 summary (json_record)
+```
+
+```
+                    Length Class  Mode
+response             3     -none- list
+location            17     -none- list
+current_observation 56     -none- list
 ```
 
 Resources
@@ -78,6 +95,4 @@ Data comes from https://www.wunderground.com
 
 ![wunderground](https://icons.wxug.com/logos/PNG/wundergroundLogo_4c_horz.png)
 
-```{r, echo=FALSE}
 
-```
