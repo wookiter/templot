@@ -1,0 +1,72 @@
+Temperatures viewer
+========================================================
+author: Łukasz Sadalski
+date: 26 February 2018
+autosize: true
+
+Introduction
+========================================================
+
+This is a viewer to display temperatures of my neighbourhood between July 2017 and February 2018. 
+Observations from five weather stations were used. 
+You can display temperatures using:
+- range of temperatures
+  - min (-30, 0)
+  - max (0, 40)
+- range of dates (31/07/2017 - 24/02/2018)
+- chosen weather station or all of them on the same chart
+The plot will automatically refresh.
+
+If you want to display two, three or four chosen stations at the same time, please click on the station names on the plot legend to choose. The legend is visible when "ALL" stations are clicked on the sidbar.
+
+Temperatures are displayed in Celsius.
+
+Resources
+========================================================
+
+The application is available here: 
+https://wookiter.shinyapps.io/r_ex_shiny/
+
+Other resources are available on github:
+- ui.R 
+- server.R
+- data frame object - "saveddf_temp.RData" <br>
+As the data used was loaded from 30000 flat files (takes time and space), data frame object was
+- this presentation
+
+Data loading
+========================================================
+
+I used locally stored weather data to build a plot, I loaded almost 30000 flat files. Each json file has around 76 variables, I chose only necessary ones for a plot.
+
+```{r}
+library (jsonlite)
+files <- list.files(path="/Users/wookiter/weather", pattern="*.txt", full.names=T, recursive=FALSE) 
+tail(files,3)
+json_record <- read_json ("/Users/wookiter/weather/2018-02-24-17-00-09-IMZPECIC2.txt")
+summary (json_record)
+```
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Source of data
+========================================================
+
+I gathered the data from wunderground.com.
+This site gathers weather conditions from amateur weather stations.
+Using scheduled python script and wunderground API I collect current weather conditions every hour and I save all the json formatted data as flat files.
+
+https://wookiter.shinyapps.io/r_ex_shiny/
+
+Data comes from https://www.wunderground.com
+
+![wunderground](https://icons.wxug.com/logos/PNG/wundergroundLogo_4c_horz.png)
+
+```{r, echo=FALSE}
+
+```
